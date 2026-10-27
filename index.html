@@ -340,11 +340,14 @@ q.addEventListener("input",()=>{
     renderUnits();renderTree();
     const key=e.c+"|"+e.u+"|"+(e.s?(e.lv>=2?"E::"+e.t+"::"+e.s+"::"+e.e:"S::"+e.t+"::"+e.s):"T::"+e.t);
     node=nodes[key]||null;renderTree();renderRes();
-    document.getElementById("courses").querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c.dataset.c===course));
+    renderChips();
   }));
 });
 
-function render(){renderUnits();renderTree();renderRes();}
+function renderChips(){
+  cEl.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed", b.dataset.c===course));
+}
+function render(){renderChips();renderUnits();renderTree();renderRes();}
 document.getElementById("built").textContent="Built "+D.built+" from the TAM I, II and III course outlines and six submitted tables of contents.";
 document.getElementById("counts").textContent=D.stats.matched+" of "+D.stats.entries+" curriculum entries have at least one chapter.";
 render();
